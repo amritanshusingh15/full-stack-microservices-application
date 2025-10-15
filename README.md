@@ -29,7 +29,7 @@ frontend to Vercel link-:https://full-stack-microservices-applicatio-ruddy.verce
 
 ## Setup (local, using docker-compose)
 
-1. Copy `.env.example` to `.env` and fill in WooCommerce credentials (provided in assignment). Example:
+1. Copy `.env.example` to `.env` and fill in WooCommerce credentials provided.
 2. Start services:
 
 ```bash
