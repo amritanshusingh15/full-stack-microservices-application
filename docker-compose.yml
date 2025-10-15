@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/woo_segments_db
+      - WOO_BASE_URL=${WOO_BASE_URL}
+      - WOO_CONSUMER_KEY=${WOO_CONSUMER_KEY}
+      - WOO_CONSUMER_SECRET=${WOO_CONSUMER_SECRET}
+      - INGEST_CRON_SCHEDULE=${INGEST_CRON_SCHEDULE}
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    environment:
+      - VITE_API_BASE=http://backend:4000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
