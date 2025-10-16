@@ -1,6 +1,6 @@
 # Full Stack Woo Segments (MERN)
 
-A take-home assignment implementation (MERN) that:
+A full-stack microservices application that:
 
 - Ingests products from a WooCommerce site (provided test store)
 - Stores them locally in MongoDB with required field names
